@@ -1,5 +1,6 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Main {
@@ -44,7 +45,7 @@ public class Main {
      * @param arrayList the ArrayList to be sorted. arrayList cannot contain duplicates
      */
     public static void mergeSort(ArrayList<Integer> arrayList) {
-        throw new UnsupportedOperationException("mergeSort() has not been implemented yet");
+
     }
 
     /**
@@ -57,7 +58,13 @@ public class Main {
      * @param hi the index of the last element in the range + 1.
      */
     public static void sort(ArrayList<Integer> arrayList, int lo, int hi) {
-        throw new UnsupportedOperationException("sort() has not been implemented yet");
+        int leftRange, rightRange;
+        if(arrayList.size() != 0 || arrayList.size() != 1)
+        {
+            leftRange = 0;
+            rightRange = arrayList.size()/2;
+        }
+
     }
 
     /**
@@ -71,6 +78,13 @@ public class Main {
      * @param hi the index of the last element in the second range + 1.
      */
     public static void merge(ArrayList<Integer> arrayList, int lo, int mid, int hi) {
-        throw new UnsupportedOperationException("merge() has not been implemented yet");
+        int currentIndexRight = mid;
+        ArrayList<Integer> temp = new ArrayList();
+        if(arrayList.get(lo)> arrayList.get(currentIndexRight))
+        {
+            temp.add(arrayList.get(mid));
+        }
+        else
+            currentIndexRight++;
     }
 }
