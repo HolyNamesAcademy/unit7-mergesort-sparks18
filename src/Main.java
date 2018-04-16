@@ -45,6 +45,7 @@ public class Main {
      * @param arrayList the ArrayList to be sorted. arrayList cannot contain duplicates
      */
     public static void mergeSort(ArrayList<Integer> arrayList) {
+        sort(arrayList, 0,arrayList.size());
 
     }
 
@@ -58,13 +59,13 @@ public class Main {
      * @param hi the index of the last element in the range + 1.
      */
     public static void sort(ArrayList<Integer> arrayList, int lo, int hi) {
-        int leftRange, rightRange;
         if(arrayList.size() != 0 || arrayList.size() != 1)
         {
-            leftRange = 0;
-            rightRange = arrayList.size()/2;
+           int mid = (lo + hi)/2;
+            sort(arrayList, lo, mid);
+            sort(arrayList, mid+1, hi);
+            merge(arrayList,lo,mid,hi);
         }
-
     }
 
     /**
@@ -79,6 +80,7 @@ public class Main {
      */
     public static void merge(ArrayList<Integer> arrayList, int lo, int mid, int hi) {
         int currentIndexRight = mid;
+        int currentIndexLeft = lo;
         ArrayList<Integer> temp = new ArrayList();
         if(arrayList.get(lo)> arrayList.get(currentIndexRight))
         {
