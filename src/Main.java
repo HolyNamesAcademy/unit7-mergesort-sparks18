@@ -59,13 +59,14 @@ public class Main {
      * @param hi the index of the last element in the range + 1.
      */
     public static void sort(ArrayList<Integer> arrayList, int lo, int hi) {
-        if(arrayList.size() != 0 || arrayList.size() != 1)
+        if(hi - lo <= 1)
         {
-           int mid = (lo + hi)/2;
-            sort(arrayList, lo, mid);
-            sort(arrayList, mid+1, hi);
-            merge(arrayList,lo,mid,hi);
+            return;
         }
+        int mid = (hi + lo)/2;
+        sort(arrayList,lo,mid);
+        sort(arrayList,mid, hi);
+        merge(arrayList,lo,mid, hi);
     }
 
     /**
@@ -82,11 +83,28 @@ public class Main {
         int currentIndexRight = mid;
         int currentIndexLeft = lo;
         ArrayList<Integer> temp = new ArrayList();
-        if(arrayList.get(lo)> arrayList.get(currentIndexRight))
+        while(currentIndexLeft<mid || currentIndexRight < hi)
         {
-            temp.add(arrayList.get(mid));
+            if(currentIndexRight == hi)
+            {
+                temp.add(arrayList.get(currentIndexLeft));
+                currentIndexLeft++;
+            }
+            else if(currentIndexLeft == mid)
+            {
+                temp.add(arrayList.get(currentIndexRight));
+                currentIndexRight++;
+            }
+            else if(arrayList.get(currentIndexRight) < arrayList.get(currentIndexLeft))
+            {
+                temp.add(arrayList.get(currentIndexRight))
+                currentIndexRight++;
+            }
+            else {
+                temp.add(arrayList.get(currentIndexLeft));
+                currentIndexLeft++;
+            }
+
         }
-        else
-            currentIndexRight++;
     }
 }
