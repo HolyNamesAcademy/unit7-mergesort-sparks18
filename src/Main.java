@@ -80,31 +80,34 @@ public class Main {
      * @param hi the index of the last element in the second range + 1.
      */
     public static void merge(ArrayList<Integer> arrayList, int lo, int mid, int hi) {
-        int currentIndexRight = mid;
-        int currentIndexLeft = lo;
-        ArrayList<Integer> temp = new ArrayList();
-        while(currentIndexLeft<mid || currentIndexRight < hi)
-        {
-            if(currentIndexRight == hi)
-            {
-                temp.add(arrayList.get(currentIndexLeft));
-                currentIndexLeft++;
+
+        // create a temporary array to do our merging
+        ArrayList<Integer> tempArray = new ArrayList<Integer>();
+        // copy elements from the two ranges into our temporary array in order
+        int i = lo;
+        int j = mid;
+        while (i < mid || j < hi) {
+            if (j == hi) {
+                tempArray.add(arrayList.get(i));
+                i++;
             }
-            else if(currentIndexLeft == mid)
-            {
-                temp.add(arrayList.get(currentIndexRight));
-                currentIndexRight++;
+            else if (i == mid) {
+                tempArray.add(arrayList.get(j));
+                j++;
             }
-            else if(arrayList.get(currentIndexRight) < arrayList.get(currentIndexLeft))
-            {
-                temp.add(arrayList.get(currentIndexRight))
-                currentIndexRight++;
+            else if (arrayList.get(j) < arrayList.get(i)) {
+                tempArray.add(arrayList.get(j));
+                j++;
             }
             else {
-                temp.add(arrayList.get(currentIndexLeft));
-                currentIndexLeft++;
+                tempArray.add(arrayList.get(i));
+                i++;
             }
-
+        }
+        // copy tempArray back to arrayList
+        for (int index = 0; index < tempArray.size(); index++) {
+            arrayList.set(index + lo, tempArray.get(index));
         }
     }
+    
 }
